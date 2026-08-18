@@ -1,0 +1,71 @@
+/* Fixed floating navbar at the top */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: right;
+  z-index: 100;
+  background-color: transparent;
+  pointer-events: none; /* Let clicks pass through empty space */
+}
+
+.nav-list {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  pointer-events: auto; /* Re-enable clicks for nav links */
+}
+
+/* Base link styles (Default for dark sections: about, projects, contact) */
+.nav-link {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #F7F4D5; /* Cream text color for dark backgrounds */
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+/* When on the Hero section, change the link text color to dark green (#0A3323) */
+.hero-nav-list .nav-link {
+  color: #0A3323; 
+}
+
+/* Hover state */
+.nav-link:hover {
+  color: #839958;
+}
+
+/* Active section text color override */
+.nav-link.active {
+  color: #839958; /* #839958 color when active */
+}
+
+/* One-time left-to-right underline animation for active item */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #839958;
+  animation: slideInUnderline 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes slideInUnderline {
+  0% {
+    width: 0%;
+    left: 0;
+  }
+  100% {
+    width: 100%;
+    left: 0;
+  }
+}

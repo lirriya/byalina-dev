@@ -1,0 +1,121 @@
+/* Shifted the entire container to align to the left */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  justify-content: center;
+  gap: 1.5rem;
+  text-align: left;
+  width: 100%;
+  padding-left: 10%; 
+  z-index: 10; /* <--- Forces text to top layer */
+  position: relative;
+}
+
+/* Smooth fade down for the main title */
+.hero-title {
+  font-size: 4.5rem;
+  color: #0A3323;
+  font-weight: 800;
+  letter-spacing: -2px;
+  animation: fadeDown 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Typewriter wrapper */
+.typewriter-container {
+  display: inline-block;
+}
+
+.hero-subtitle {
+  color: #105666; /* Deep blue-green */
+  font-size: 1.5rem;
+  font-weight: 500;
+  border-right: 3px solid #D3968C; /* Blinking cursor */
+  white-space: nowrap; 
+  overflow: hidden; 
+  
+  /* Removed 'margin: 0 auto' so it stays locked to the left! */
+  margin: 0; 
+  
+  /* We start at 0 and move forward */
+  width: 0; 
+  animation: 
+    typing 2.5s steps(55, end) 0.5s forwards,
+    blink-caret 0.8s step-end infinite;
+}
+
+.hero-subtitle span {
+  color: #0A3323; /* Dark green dot */
+  margin: 0 10px;
+}
+
+/* Keyframes for the animations */
+@keyframes fadeDown {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typing {
+  0% { width: 0; }
+  100% { width: 55ch; } /* 'ch' matches the character count */
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #839958; }
+}
+
+
+
+
+/* Container to handle absolute positioning */
+.hero-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center; 
+  overflow: hidden; /* Prevents blobs from causing weird scrolling */
+}
+
+
+/* 2. Bouncing Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 10%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  /* Waits 3 seconds for typing to finish, then fades in */
+  animation: fadeIn 1s ease forwards 3s; 
+  z-index: 10;
+}
+
+.scroll-indicator p {
+  font-size: 0.8rem;
+  color: #0A3323;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.scroll-line {
+  width: 2px;
+  height: 40px;
+  background-color: #0A3323;
+  animation: bounce 2s infinite cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* New Keyframes */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 0.6; } /* Slight transparency looks cleaner */
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(12px); }
+}

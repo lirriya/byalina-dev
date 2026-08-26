@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Navbar from './Navbar';
 import './App.css';
+import Hero from './Hero';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -18,7 +19,7 @@ function App() {
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-    
+
     const sections = container.querySelectorAll('.section');
 
     const observer = new IntersectionObserver(
@@ -31,7 +32,7 @@ function App() {
       },
       {
         root: container,
-        threshold: 0.5, // Trigger when 50% of the section is visible
+        threshold: 0.5, 
       }
     );
 
@@ -47,8 +48,7 @@ function App() {
       <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
 
       <section id="hero" className="section hero-section">
-        <h1 style={{ color: "#0A3323" }}>Made byalina.dev</h1>
-        <p style={{ color: "#0A3323" }}>aspiring swe</p>
+        <Hero />
       </section>
 
       <section id="about" className="section about-section">

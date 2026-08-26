@@ -1,0 +1,119 @@
+/* Glassmorphism & 3D Tilt Wrapper */
+.terminal-wrapper {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%) perspective(1000px) rotateY(-5deg);
+  width: 600px;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  
+  /* Original Glassmorphism Effect */
+  background: rgba(10, 51, 35, 0.7); /* Deep Forest Green */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(247, 244, 213, 0.15); 
+  border-radius: 8px; /* Slightly sharper corners for Linux feel */
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 0 0 30px rgba(16, 86, 102, 0.2);
+  
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+  z-index: 10;
+}
+
+/* 3D Lift on Hover */
+.terminal-wrapper:hover {
+  transform: translateY(-52%) perspective(1000px) rotateY(0deg) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(211, 150, 140, 0.25);
+}
+
+/* Fedora-style Header */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers the title */
+  position: relative; /* Allows controls to snap to the right */
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid rgba(247, 244, 213, 0.1);
+}
+
+.terminal-title {
+  color: rgba(247, 244, 213, 0.7);
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Linux window controls snapped to the right */
+.fedora-controls {
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  gap: 14px;
+  color: rgba(247, 244, 213, 0.6);
+  font-size: 1.1rem;
+}
+
+.control {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.control:hover {
+  color: #F7F4D5;
+}
+
+.close:hover {
+  color: #ff5f56; /* Classic red close button on hover */
+}
+
+/* Original Terminal Text Body */
+.terminal-body {
+  padding: 2rem;
+  color: #F7F4D5; 
+  font-size: 1.15rem;
+  line-height: 1.7;
+  flex-grow: 1;
+}
+
+.term-line {
+  margin: 0 0 0.5rem 0;
+  animation: fadeInLine 0.3s ease forwards;
+}
+
+.prompt {
+  color: #D3968C; /* Dusty Rose */
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.status-ok {
+  color: #839958; /* Soft Green */
+  font-weight: bold;
+}
+
+.highlight {
+  color: #105666; /* Deep Teal */
+  background: rgba(247, 244, 213, 0.8);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.term-cursor {
+  display: inline-block;
+  width: 8px;
+  background-color: #F7F4D5;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes fadeInLine {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

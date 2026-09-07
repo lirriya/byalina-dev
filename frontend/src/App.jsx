@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Navbar from './Navbar';
 import './App.css';
 import Hero from './Hero';
+import About from './About';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -43,18 +44,15 @@ function App() {
     };
   }, []);
 
-  return (
-    <div className="portfolio-container" ref={containerRef}>
+return (
+    <div id="main-scroller" className="portfolio-container" ref={containerRef}>
       <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
 
       <section id="hero" className="section hero-section">
         <Hero />
       </section>
 
-      <section id="about" className="section about-section">
-        <h2>About Me</h2>
-        <p>buttons to show info: study background, skills, me as a person</p>
-      </section>
+      <About />
 
       <section id="projects" className="section projects-section">
         <h2>Projects</h2>

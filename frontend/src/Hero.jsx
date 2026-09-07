@@ -15,8 +15,7 @@ function Hero() {
         
         <div className="typewriter-container">
           <p className="hero-subtitle">
-            L3 CS Student <span>•</span> Seeking Software Engineering Stage
-          </p>
+            L3 CS Student <span>•</span> Looking for CS Stage</p>
         </div>
       </div>
 

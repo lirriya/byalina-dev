@@ -40,7 +40,7 @@
   /* We start at 0 and move forward */
   width: 0; 
   animation: 
-    typing 2.5s steps(55, end) 0.5s forwards,
+    typing 2.5s steps(34, end) 0.5s forwards,
     blink-caret 0.8s step-end infinite;
 }
 
@@ -57,7 +57,7 @@
 
 @keyframes typing {
   0% { width: 0; }
-  100% { width: 55ch; } /* 'ch' matches the character count */
+  100% { width: 34ch; } /* 'ch' matches the character count */
 }
 
 @keyframes blink-caret {

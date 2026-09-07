@@ -1,0 +1,99 @@
+.about-container {
+  height: 400vh; 
+  position: relative;
+  background-color: #0A3323; 
+  scroll-snap-align: start; 
+}
+
+.sticky-viewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1000px; 
+}
+
+.lily-pad-card {
+  position: absolute;
+  top: 50%;      
+  width: 450px;
+  height: 450px; 
+  padding: 4rem;
+  
+  border-radius: 43% 57% 59% 41% / 47% 53% 47% 53%;
+  
+  background: rgba(10, 51, 35, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(211, 150, 140, 0.4); 
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(211, 150, 140, 0.05);
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+  will-change: transform, opacity, border-radius; 
+  animation: pad-wobble 8s ease-in-out infinite alternate;
+}
+
+
+.lily-flower {
+  position: absolute;
+  top: -40px;
+  right: 40px;
+  width: 170px;
+  height: 170px;
+  z-index: 10;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
+}
+
+
+.petal, .sepal, .stamens {
+  transform-origin: 50px 85px; 
+}
+
+
+.outer-left { animation: bloom-wide-left 4s ease-in-out infinite alternate; }
+.outer-right { animation: bloom-wide-right 4s ease-in-out infinite alternate; }
+.mid-left { animation: bloom-mid-left 4s ease-in-out infinite alternate 0.2s; }
+.mid-right { animation: bloom-mid-right 4s ease-in-out infinite alternate 0.2s; }
+.inner-left { animation: bloom-close-left 4s ease-in-out infinite alternate 0.4s; }
+.inner-right { animation: bloom-close-right 4s ease-in-out infinite alternate 0.4s; }
+.center-petal { animation: bloom-center 4s ease-in-out infinite alternate 0.5s; }
+
+
+@keyframes pad-wobble {
+  0% { border-radius: 43% 57% 59% 41% / 47% 53% 47% 53%; }
+  100% { border-radius: 57% 43% 41% 59% / 53% 47% 53% 47%; }
+}
+
+@keyframes bloom-wide-left { 0% { transform: rotate(0deg); } 100% { transform: rotate(-12deg); } }
+@keyframes bloom-wide-right { 0% { transform: rotate(0deg); } 100% { transform: rotate(12deg); } }
+@keyframes bloom-mid-left { 0% { transform: rotate(0deg); } 100% { transform: rotate(-8deg); } }
+@keyframes bloom-mid-right { 0% { transform: rotate(0deg); } 100% { transform: rotate(8deg); } }
+@keyframes bloom-close-left { 0% { transform: rotate(0deg); } 100% { transform: rotate(-4deg); } }
+@keyframes bloom-close-right { 0% { transform: rotate(0deg); } 100% { transform: rotate(4deg); } }
+@keyframes bloom-center { 0% { transform: scaleY(1); } 100% { transform: scaleY(0.95); } }
+@keyframes stamen-breathe { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
+
+
+.pad-title {
+  color: #D3968C;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Fira Code', monospace;
+  z-index: 2; 
+}
+
+.pad-content {
+  color: #F7F4D5; 
+  font-size: 1.25rem;
+  line-height: 1.6;
+  z-index: 2;
+}

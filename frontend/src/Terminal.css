@@ -10,7 +10,7 @@
   flex-direction: column;
   
   /* Original Glassmorphism Effect */
-  background: rgba(10, 51, 35, 0.7); /* Deep Forest Green */
+  background: #0a3323b3; /* Deep Forest Green */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(247, 244, 213, 0.15); 
@@ -41,7 +41,7 @@
 }
 
 .terminal-title {
-  color: rgba(247, 244, 213, 0.7);
+  color: #f7f4d5b3;
   font-size: 0.9rem;
   font-weight: bold;
 }

@@ -1,52 +1,158 @@
-.about-container {
-  height: 400vh; 
-  position: relative;
-  background-color: #0A3323; 
-  scroll-snap-align: start; 
-}
-
-.sticky-viewport {
-  position: sticky;
-  top: 0;
+/* -------------------------------------------
+   THE DARK POND (Base Layer)
+------------------------------------------- */
+.enchanted-pond-container {
   height: 100vh;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: #020b07; 
+  position: relative;
   overflow: hidden;
-  perspective: 1000px; 
+  scroll-snap-align: start; 
+  cursor: none; 
 }
 
-.lily-pad-card {
+.hint-text {
   position: absolute;
-  top: 50%;      
-  width: 450px;
-  height: 320px; 
-  padding: 4rem;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(247, 244, 213, 0.3);
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.blink { animation: blink 1.5s step-end infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* -------------------------------------------
+   THE GLOWING LANTERN CURSOR
+------------------------------------------- */
+.lantern-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0px;
+  height: 0px;
+  background-color: #f0d889;
+  border-radius: 100%;
+  pointer-events: none;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 45px 30px rgba(247, 211, 93, 0.35);
+}
+
+/* -------------------------------------------
+   THE FLASHLIGHT REVEAL LAYER
+------------------------------------------- */
+.flashlight-reveal-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
   
-  border-radius: 43% 57% 59% 41% / 47% 53% 47% 53%;
-  
-  background: rgba(10, 51, 35, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(211, 150, 140, 0.4); 
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(211, 150, 140, 0.05);
-  
+  -webkit-mask-image: radial-gradient(
+    circle 230px at var(--mouse-x, 50vw) var(--mouse-y, 50vh), 
+    black 0%, 
+    rgba(0, 0, 0, 0.75) 50%, 
+    transparent 85%
+  );
+  mask-image: radial-gradient(
+    circle 230px at var(--mouse-x, 50vw) var(--mouse-y, 50vh), 
+    black 0%, 
+    rgba(0, 0, 0, 0.75) 50%, 
+    transparent 85%
+  );
+}
+
+
+
+/* -------------------------------------------
+   INTERACTIVE ZONES
+------------------------------------------- */
+.interactive-zone {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
+  width: 350px;
+  cursor: pointer;
+  z-index: 10;
   
-  will-change: transform, opacity, border-radius; 
-  animation: pad-wobble 8s ease-in-out infinite alternate;
+  opacity: 0.4;
+  filter: brightness(0.4);
+  transition: all 0.4s ease;
 }
 
+.zone-left { top: 38%; left: 15%; }
+.zone-center { top: 38%; left: 50%; transform: translateX(-50%) scale(0.9); }
+.zone-right { top: 38%; right: 15%; }
+
+.interactive-zone:hover {
+  opacity: 0.9;
+  filter: brightness(0.8); 
+  transform: scale(0.95);
+}
+
+.zone-center:hover { 
+  transform: translateX(-50%) scale(0.95); 
+}
+
+.interactive-zone.dimmed {
+  opacity: 0.1;
+}
+
+.interactive-zone.active {
+  opacity: 1;
+  filter: brightness(1.2);
+  transform: scale(1.1);
+  z-index: 50;
+}
+.zone-center.active { transform: translateX(-50%) scale(1.1); }
+/* -------------------------------------------
+   ICONS & ANIMATIONS
+------------------------------------------- */
+.icon-wrapper {
+  width: 140px;
+  height: 140px;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 5;
+}
+
+.whimsy-flower, .whimsy-frog {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.8));
+}
+
+.flower-bounce {
+  transform-origin: center;
+  animation: floatFlower 4s ease-in-out infinite alternate;
+}
+.frog-bounce {
+  transform-origin: center;
+  animation: floatFrog 3s ease-in-out infinite alternate;
+}
+
+@keyframes floatFlower {
+  0% { transform: translateY(0px) rotate(-5deg) scale(1); }
+  100% { transform: translateY(-12px) rotate(5deg) scale(1.05); }
+}
+@keyframes floatFrog {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(-10px) scale(1.02); }
+}
 
 .lily-flower {
   position: absolute;
-  top: -80px;
-  right: 50px;
+  top: -10px;
+  right: -10px;
   width: 170px;
   height: 170px;
   z-index: 10;
@@ -67,12 +173,6 @@
 .inner-right { animation: bloom-close-right 3.5s ease-in-out infinite alternate 0.4s; }
 .center-petal { animation: bloom-center 3.5s ease-in-out infinite alternate 0.5s; }
 
-
-@keyframes pad-wobble {
-  0% { border-radius: 43% 57% 59% 41% / 47% 53% 47% 53%; }
-  100% { border-radius: 57% 43% 41% 59% / 53% 47% 53% 47%; }
-}
-
 @keyframes bloom-wide-left { 0% { transform: rotate(0deg); } 100% { transform: rotate(-12deg); } }
 @keyframes bloom-wide-right { 0% { transform: rotate(0deg); } 100% { transform: rotate(12deg); } }
 @keyframes bloom-mid-left { 0% { transform: rotate(0deg); } 100% { transform: rotate(-8deg); } }
@@ -82,59 +182,68 @@
 @keyframes bloom-center { 0% { transform: scaleY(1); } 100% { transform: scaleY(0.95); } }
 @keyframes stamen-breathe { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
 
+/* -------------------------------------------
+   TEXT REVEAL
+------------------------------------------- */
+.content-wrapper {
+  position: relative;
+  z-index: 5;
+}
 
-.pad-title {
-  color: #D3968C;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+.zone-title {
+  color: #D3968C; 
   font-family: 'Fira Code', monospace;
-  z-index: 2; 
+  font-size: 2rem;
+  margin: 0 0 1rem 0;
+  text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  transition: color 0.3s ease;
 }
 
-.pad-content {
-  color: #F7F4D5; 
-  font-size: 1.25rem;
+.zone-text {
+  color: #F7F4D5;
+  font-family: 'Fira Code', monospace;
+  font-size: 1.1rem;
   line-height: 1.6;
-  z-index: 2;
-}
-
-.water-stream-wrapper {
-  position: absolute;
-  bottom: 0;       
-  left: 0;
-  width: 100%;
-  height: 60vh;    
-  perspective: 800px; 
-  z-index: 0;      
-  display: flex;
-  justify-content: center;
+  
+  opacity: 0;
+  max-height: 0;
   overflow: hidden;
-  pointer-events: none; 
+  transform: translateY(-10px);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.water-surface {
-  position: absolute;
-  bottom: -5%;
-  width: 1500px;    
-  height: 800%;    
-  
-  transform-origin: bottom center;
-  transform: rotateX(70deg); 
-  
-  background-image: 
-    url('data:image/svg+xml;charset=UTF-8,<svg width="200" height="300" xmlns="http://www.w3.org/2000/svg"><path d="M 50,10 C 80,100 20,200 50,290 C 28,200 88,100 50,10 Z" fill="%230D4554"><animate attributeName="opacity" values="0.6; 1; 0.6" dur="4s" repeatCount="indefinite" /></path><path d="M 130,50 C 150,120 110,180 130,250 C 115,180 155,120 130,50 Z" fill="%23105666"><animate attributeName="opacity" values="0.3; 0.9; 0.3" dur="3.2s" repeatCount="indefinite" /></path><path d="M 170,100 C 185,150 155,220 170,270 C 158,220 188,150 170,100 Z" fill="%231A7A8F"><animate attributeName="opacity" values="0.1; 0.8; 0.1" dur="2.5s" repeatCount="indefinite" /></path><path d="M 90,140 C 105,170 75,220 90,250 C 77,220 107,170 90,140 Z" fill="%232AB6D4"><animate attributeName="opacity" values="0; 0.7; 0" dur="4.5s" repeatCount="indefinite" /></path></svg>'),
-    url('data:image/svg+xml;charset=UTF-8,<svg width="200" height="300" xmlns="http://www.w3.org/2000/svg"><path d="M 50,10 C 80,100 20,200 50,290 C 28,200 88,100 50,10 Z" fill="%23081E2B"><animate attributeName="opacity" values="0.3; 0.8; 0.3" dur="5s" repeatCount="indefinite" /></path><path d="M 130,50 C 150,120 110,180 130,250 C 115,180 155,120 130,50 Z" fill="%230D3547"><animate attributeName="opacity" values="0.2; 0.6; 0.2" dur="6s" repeatCount="indefinite" /></path></svg>'),
-    linear-gradient(to right, transparent 0%, rgba(6, 26, 43, 0.5) 15%, rgba(10, 34, 53, 0.98) 50%, rgba(6, 26, 43, 0.5) 85%, transparent 100%);
-  
-  background-size: 300px 400px, 420px 580px, 100% 100%;
-  
-  background-position-x: 0px, -80px, 0px;
-  background-position-y: 0px, 0px, 0px; 
-  
-  -webkit-mask-image: linear-gradient(to top, black 15%, transparent 90%), linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to top, black 15%, transparent 90%), linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
-  mask-composite: intersect;
+.interactive-zone.active .zone-text {
+  opacity: 1;
+  max-height: 200px;
+  transform: translateY(0);
+}
 
-  will-change: background-position;
+.interactive-zone.active .zone-title {
+  color: #F7D35D; 
+}
+
+
+/* -------------------------------------------
+   THE AURA GLOW
+------------------------------------------- */
+.lantern-glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  
+  background: radial-gradient(circle, rgba(16, 86, 102, 0.65) 0%, rgba(10, 51, 35, 0.45) 40%, transparent 70%);
+  
+  z-index: 0;
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+.interactive-zone.active .lantern-glow {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }

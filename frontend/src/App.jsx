@@ -21,7 +21,7 @@ function App() {
     const container = containerRef.current;
     if (!container) return;
 
-    const sections = container.querySelectorAll('.section');
+    const sections = container.querySelectorAll('section');
 
     const observer = new IntersectionObserver(
       (entries) => {

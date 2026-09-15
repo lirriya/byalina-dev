@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import './App.css';
 import Hero from './Hero';
 import About from './About';
+import Projects from './Projects';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -33,7 +34,7 @@ function App() {
       },
       {
         root: container,
-        threshold: 0.5, 
+        threshold: 0.5,
       }
     );
 
@@ -44,7 +45,7 @@ function App() {
     };
   }, []);
 
-return (
+  return (
     <div id="main-scroller" className="portfolio-container" ref={containerRef}>
       <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
 
@@ -52,11 +53,10 @@ return (
         <Hero />
       </section>
 
-      <About />
+        <About />
 
       <section id="projects" className="section projects-section">
-        <h2>Projects</h2>
-        <p>Cluedo, Mythifox, Tvoria, ghost train, tic tac toe</p>
+        <Projects />
       </section>
 
       <section id="contact" className="section contact-section">

@@ -1,0 +1,314 @@
+/* -------------------------------------------
+   LAYOUT & THEME
+------------------------------------------- */
+.projects-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #D3968C; 
+  position: relative;
+  overflow: hidden;
+  perspective: 1200px; 
+}
+
+/* -------------------------------------------
+   📦 THE BOOSTER PACK (Interactive Hover Lift)
+------------------------------------------- */
+.booster-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px;
+  height: 520px;
+  z-index: 50; 
+  perspective: 1200px; 
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.booster-wrapper.burst {
+  transform: translate(-50%, -50%) scale(1.1) translateY(80px) rotateX(-20deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.booster-pack {
+  width: 100%;
+  height: 100%;
+  background: #0a3323b3; 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #f7f4d526; 
+  border-radius: 20px; 
+  position: relative;
+  overflow: hidden;
+  
+  /* Resting state: slight organic lean, settled on the table */
+  transform: translateY(0px) rotateX(4deg) rotateY(6deg) scale(1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25), 0 0 20px rgba(16, 86, 102, 0.15);
+  
+  /* Smooth, spring-like transition when you hover or unhover */
+  transition: transform 3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 3s ease;
+}
+
+/* THE "PICK UP" HOVER EFFECT */
+.booster-pack:hover {
+  /* Lifts up toward the user, flattens slightly, and twists the opposite way */
+  transform: translateY(-15px) rotateX(-4deg) rotateY(-8deg) scale(1.04);
+  
+  /* Casts a deeper shadow because it's now floating off the page */
+  box-shadow: 0 35px 60px rgba(0, 0, 0, 0.4), 0 0 45px rgba(211, 150, 140, 0.3);
+}
+
+/* Pack Artwork */
+.pack-art {
+  position: absolute;
+  top: 35%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.pack-title {
+  font-family: 'Fira Code', monospace;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  margin: 0;
+  color: #F7F4D5; 
+  font-weight: bold;
+}
+
+.pack-subtitle {
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  color: rgba(247, 244, 213, 0.6); 
+  margin-top: 15px;
+}
+
+.pack-graphic {
+  margin-top: 30px;
+  font-family: 'Fira Code', monospace;
+  font-size: 1.1rem;
+  color: #105666; 
+  background: rgba(247, 244, 213, 0.8);
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 10px;
+}
+
+/* Tear Strip */
+.tear-strip {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid rgba(247, 244, 213, 0.15);
+  background: rgba(0, 0, 0, 0.15); 
+  z-index: 10;
+  overflow: hidden;
+}
+
+.tear-strip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(247, 244, 213, 0.25), transparent);
+  animation: shineSwipe 3s infinite;
+  pointer-events: none;
+}
+
+.tear-instructions {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #F7F4D5;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  pointer-events: none; 
+  animation: pulseOpacity 1.5s ease-in-out infinite alternate;
+}
+
+.tear-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0; 
+  cursor: grab;
+  z-index: 20;
+}
+.tear-slider:active { cursor: grabbing; }
+
+.rip-overlay {
+  position: absolute;
+  top: -10px;
+  right: -5px;
+  height: calc(100% + 20px);
+  width: calc(var(--tear-progress) + 5px); 
+  background-color: #D3968C; 
+  clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%, 15% 80%, 0% 60%, 15% 40%, 0% 20%);
+  pointer-events: none;
+}
+
+/* -------------------------------------------
+   🃏 THE 3D TERMINAL CARD STACK (SOLID & CLEAN)
+------------------------------------------- */
+.card-stack-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 520px;
+  
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease 0.4s;
+  transform-style: preserve-3d;
+  z-index: 40;
+}
+
+.card-stack-wrapper.revealed {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* SOLID background: No more see-through blur cluttering the text */
+  background: #465143;
+  border: 2px solid #f7f4d526; 
+  border-radius: 10px; /* Sharper, authentic terminal window edges */
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  
+  display: flex;
+  flex-direction: column;
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card:hover {
+  transform: 1s translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 20px rgba(211, 150, 140, 0.3);
+}
+
+/* Linux Tiling Window Titlebar (No macOS dots!) */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(247, 244, 213, 0.2);
+  padding-bottom: 0.6rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: rgba(247, 244, 213, 0.6);
+}
+
+.terminal-mode {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.terminal-id {
+  color: #D3968C;
+}
+
+.card-title {
+  color: #F7F4D5;
+  font-family: 'Fira Code', monospace;
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.prompt { 
+  color: #D3968C; 
+}
+
+.card-tech {
+  color: #061c13;
+  background: #F7F4D5; /* High contrast solid tag */
+  font-family: 'Fira Code', monospace;
+  font-weight: bold;
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  border-radius: 3px;
+  align-self: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.card-desc {
+  color: #F7F4D5;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.card-hint {
+  margin-top: auto;
+  text-align: right;
+  color: rgba(247, 244, 213, 0.5);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+}
+
+.blink { 
+  animation: blink 1s step-end infinite; 
+}
+
+
+
+/* -------------------------------------------
+   🎬 ANIMATIONS
+------------------------------------------- */
+@keyframes pulseOpacity {
+  0% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+@keyframes shineSwipe {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.blink { animation: blink 1s step-end infinite; }
+
+/* 
+  This Keyframe animation handles both the vertical floating (translateY) 
+  AND your awesome 3D rotation (rotateY) automatically! 
+*/
+@keyframes floatBooster {
+  0% { 
+    transform: translateY(0px) rotateY(6deg) scale(1); 
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 0 0 30px rgba(16, 86, 102, 0.2); 
+  }
+  50% { 
+    /* Floats up, rotates the other way, gets slightly larger, and glows more */
+    transform: translateY(-20px) rotateY(-6deg) scale(1.02); 
+    box-shadow: 0 35px 60px rgba(0, 0, 0, 0.3), 0 0 45px rgba(211, 150, 140, 0.3); 
+  }
+  100% { 
+    transform: translateY(0px) rotateY(6deg) scale(1); 
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 0 0 30px rgba(16, 86, 102, 0.2); 
+  }
+}

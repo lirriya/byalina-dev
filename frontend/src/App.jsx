@@ -152,7 +152,7 @@ function App() {
       <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
 
       <section id="hero" className="section hero-section">
-        <Hero />
+        <Hero scrollToSection={scrollToSection} />
       </section>
 
       <div className="horizontal-stage" ref={stageRef}>

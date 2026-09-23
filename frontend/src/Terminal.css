@@ -1,11 +1,8 @@
 /* Glassmorphism & 3D Tilt Wrapper */
 .terminal-wrapper {
-  position: absolute;
-  right: 5%;
-  top: 50%;
-  transform: translateY(-50%) perspective(1000px) rotateY(-5deg);
-  width: 600px;
-  height: 400px;
+  position: relative;
+  width: min(660px, 44vw);
+  height: min(560px, 62vh);
   display: flex;
   flex-direction: column;
   
@@ -17,15 +14,16 @@
   border-radius: 8px; /* Slightly sharper corners for Linux feel */
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 0 0 30px rgba(16, 86, 102, 0.2);
   
-  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', Courier, monospace;
   overflow: hidden;
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+  transform: perspective(1000px) rotateY(-5deg);
   z-index: 10;
 }
 
 /* 3D Lift on Hover */
 .terminal-wrapper:hover {
-  transform: translateY(-52%) perspective(1000px) rotateY(0deg) scale(1.02);
+  transform: perspective(1000px) rotateY(0deg) scale(1.02);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(211, 150, 140, 0.25);
 }
 
@@ -79,6 +77,9 @@
   overflow-y: auto; 
   scrollbar-width: thin;
   scrollbar-color: rgba(247, 244, 213, 0.2) transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .term-line {
@@ -145,5 +146,12 @@
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+@media (max-width: 960px) {
+  .terminal-wrapper {
+    width: min(560px, 92vw);
+    height: min(480px, 58vh);
+  }
 }
 

@@ -1,0 +1,571 @@
+.contact-section {
+  padding: 0;
+}
+
+.contact-scene {
+  position: relative;
+  flex: 0 0 100vh;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #105666;
+  font-family: 'Fira Code', 'JetBrains Mono', Consolas, 'Courier New', Courier, monospace;
+  cursor: default;
+}
+
+.contact-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(85px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-rose {
+  width: 420px;
+  height: 420px;
+  top: -12%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(211, 150, 140, 0.5), transparent 70%);
+  opacity: 0.4;
+}
+
+.glow-gold {
+  width: 460px;
+  height: 460px;
+  bottom: -16%;
+  right: -8%;
+  background: radial-gradient(circle, rgba(247, 211, 93, 0.4), transparent 70%);
+  opacity: 0.35;
+}
+
+.ambient-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.water-ripple {
+  position: absolute;
+  border: 1px solid rgba(247, 244, 213, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: ripple var(--d, 5s) ease-out infinite;
+  will-change: transform, opacity;
+}
+
+.ripple-1 {
+  top: 17%;
+  right: 14%;
+  width: 90px;
+  height: 90px;
+  --d: 5.5s;
+}
+
+.ripple-2 {
+  bottom: 26%;
+  left: 9%;
+  width: 74px;
+  height: 74px;
+  --d: 6.5s;
+  animation-delay: 1.4s;
+}
+
+.ripple-3 {
+  top: 54%;
+  left: 18%;
+  width: 60px;
+  height: 60px;
+  --d: 7s;
+  animation-delay: 2.6s;
+}
+
+@keyframes ripple {
+  0% { transform: scale(0.25); opacity: 0.6; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+.waterline {
+  position: absolute;
+  top: 31%;
+  left: 50%;
+  translate: -50% -50%;
+  text-align: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.waterline-core {
+  position: relative;
+  display: inline-block;
+}
+
+.waterline-top {
+  font-size: clamp(2.6rem, 6.5vw, 4.8rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: rgba(247, 244, 213, 0.92);
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.waterline-reflection {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  font-size: clamp(2.6rem, 6.5vw, 4.8rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: rgba(247, 244, 213, 0.55);
+  white-space: nowrap;
+  filter: blur(0.7px);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent 62%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent 62%);
+  animation: reflectionWave 6s ease-in-out infinite alternate;
+}
+
+@keyframes reflectionWave {
+  0% { transform: scaleY(-1) translateY(0); }
+  100% { transform: scaleY(-1) translateY(-4px) skewX(0.3deg); }
+}
+
+.blink {
+  animation: blink 1.5s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.contact-scene .contact-hint {
+  position: absolute;
+  top: 24%;
+  left: 0;
+  width: 100%;
+  height: 0;
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 3px;
+  color: rgba(247, 244, 213, 0.55);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.hint-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  translate: -50% 0;
+  white-space: nowrap;
+}
+
+.hint-rain {
+  visibility: visible;
+}
+
+.hint-channel {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.hint-line .blink {
+  color: #F7D35D;
+}
+
+.contact-cards {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  width: min(960px, 92vw);
+  z-index: 5;
+}
+
+.channel-card {
+  width: 190px;
+  padding: 1.35rem 1.1rem 1.1rem;
+  background: rgba(10, 51, 35, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(247, 244, 213, 0.2);
+  border-radius: 14px;
+  color: #F7F4D5;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  transition:
+    transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.channel-card:hover,
+.channel-card:focus-visible {
+  transform: translateY(-8px);
+  border-color: rgba(211, 150, 140, 0.7);
+  box-shadow:
+    0 18px 40px rgba(2, 11, 7, 0.45),
+    0 0 30px rgba(211, 150, 140, 0.25);
+  outline: none;
+}
+
+.card-head {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-channel {
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(247, 244, 213, 0.5);
+}
+
+.card-ping {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #839958;
+  box-shadow: 0 0 10px rgba(131, 153, 88, 0.85);
+  position: relative;
+}
+
+.card-ping::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(131, 153, 88, 0.6);
+  animation: ping 2.4s ease-out infinite;
+}
+
+@keyframes ping {
+  0% { transform: scale(0.5); opacity: 0.8; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0.35rem 0 0.15rem;
+  color: #D3968C;
+  transition: color 0.3s ease;
+}
+
+.card-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.channel-card:hover .card-icon {
+  color: #F7D35D;
+}
+
+.card-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.card-sub {
+  font-size: 0.7rem;
+  color: rgba(247, 244, 213, 0.6);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.card-action {
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  color: #F7D35D;
+  border: 1px solid rgba(247, 244, 213, 0.25);
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  opacity: 0.9;
+  transition: background 0.3s ease;
+}
+
+.channel-card:hover .card-action {
+  background: rgba(247, 244, 213, 0.12);
+}
+
+.contact-scene .contact-closing {
+  position: absolute;
+  bottom: 1.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  color: rgba(247, 244, 213, 0.55);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.rain-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 6;
+}
+
+.pointer-ring {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  margin: -55px 0 0 -55px;
+  border: 1.5px solid rgba(247, 244, 213, 0.75);
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
+
+.drizzle-drop {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 12px;
+  border-radius: 2px;
+  background: linear-gradient(to bottom, rgba(247, 244, 213, 0.9), rgba(211, 150, 140, 0.55));
+  will-change: transform, opacity;
+}
+
+.drizzle-ring {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  margin: -21px 0 0 -21px;
+  border: 1px solid rgba(211, 150, 140, 0.7);
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
+
+.compose-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 30;
+  overflow-y: auto;
+}
+
+.compose-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 11, 7, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.compose-panel {
+  position: relative;
+  width: min(560px, 94vw);
+  background: linear-gradient(150deg, rgba(6, 28, 19, 0.97), rgba(10, 51, 35, 0.98));
+  border: 1px solid rgba(247, 244, 213, 0.25);
+  border-radius: 16px;
+  padding: 1.6rem;
+  color: #F7F4D5;
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(247, 244, 213, 0.04);
+}
+
+.compose-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(247, 244, 213, 0.18);
+  padding-bottom: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.compose-title {
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  color: #D3968C;
+  font-weight: 700;
+}
+
+.compose-close {
+  background: none;
+  border: none;
+  color: rgba(247, 244, 213, 0.6);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0.2rem;
+  transition: color 0.2s ease;
+}
+
+.compose-close:hover {
+  color: #D3968C;
+}
+
+.compose-to {
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  color: rgba(247, 244, 213, 0.6);
+}
+
+.compose-field {
+  display: block;
+  margin-bottom: 0.9rem;
+}
+
+.compose-field span {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(247, 244, 213, 0.55);
+  margin-bottom: 0.3rem;
+}
+
+.compose-field input,
+.compose-field textarea {
+  width: 100%;
+  background: rgba(247, 244, 213, 0.06);
+  border: 1px solid rgba(247, 244, 213, 0.18);
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  color: #F7F4D5;
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.compose-field input::placeholder,
+.compose-field textarea::placeholder {
+  color: rgba(247, 244, 213, 0.35);
+}
+
+.compose-field input:focus,
+.compose-field textarea:focus {
+  outline: none;
+  border-color: #D3968C;
+}
+
+.compose-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+}
+
+.compose-btn {
+  background: transparent;
+  border: 1px solid rgba(247, 244, 213, 0.35);
+  color: #F7F4D5;
+  font-family: inherit;
+  font-size: 0.82rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.compose-btn.ghost:hover {
+  background: rgba(247, 244, 213, 0.1);
+  border-color: rgba(247, 244, 213, 0.55);
+}
+
+.compose-btn.send {
+  border-color: #D3968C;
+}
+
+.compose-btn.send:hover {
+  background: #D3968C;
+  border-color: #D3968C;
+  color: #061c13;
+}
+
+@media (max-width: 1080px) {
+  .channel-card {
+    width: 180px;
+  }
+}
+
+@media (max-width: 860px) {
+  .contact-cards {
+    width: min(620px, 92vw);
+    gap: 1rem;
+  }
+
+  .channel-card {
+    width: 200px;
+  }
+
+  .ripple-3 {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .contact-cards {
+    gap: 0.9rem;
+  }
+
+  .channel-card {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .waterline {
+    top: 26%;
+  }
+
+  .contact-scene .contact-hint {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  .contact-scene .contact-closing {
+    white-space: normal;
+    width: 90%;
+    text-align: center;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-height: 700px) {
+  .waterline {
+    top: 27%;
+  }
+
+  .waterline-top,
+  .waterline-reflection {
+    font-size: clamp(2rem, 9vh, 3rem);
+  }
+
+  .channel-card {
+    width: 172px;
+    padding: 1rem 0.9rem 0.9rem;
+  }
+
+  .card-icon {
+    width: 32px;
+    height: 32px;
+    margin-top: 0.15rem;
+  }
+}

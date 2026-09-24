@@ -19,7 +19,7 @@ function Hero({ scrollToSection }) {
   const ctaRef = useRef(null);
   const roseRef = useRef(null);
   const tealRef = useRef(null);
-  const visualRef = useRef(null);
+const visualRef = useRef(null);
   const indicatorRef = useRef(null);
   const lineRef = useRef(null);
   const marqueeRef = useRef(null);

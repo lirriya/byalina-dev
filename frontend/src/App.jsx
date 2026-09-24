@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './Navbar';
@@ -6,6 +6,7 @@ import './App.css';
 import Hero from './Hero';
 import About from './About';
 import Projects from './Projects';
+import Contact from './Contact';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -167,7 +168,7 @@ function App() {
       </div>
 
       <section id="contact" className="section contact-section">
-        <h2>For contact info</h2>
+        <Contact />
       </section>
     </div>
   );

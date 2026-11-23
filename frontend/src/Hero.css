@@ -78,6 +78,11 @@
   line-height: 1.02;
 }
 
+.hero-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .hero-title .char {
   display: inline-block;
   opacity: 0;

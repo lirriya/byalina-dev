@@ -120,7 +120,6 @@ function Terminal() {
                 onKeyDown={handleCommand}
                 autoComplete="off"
                 spellCheck="false"
-                autoFocus
               />
             </div>
           </>

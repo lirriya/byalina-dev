@@ -247,3 +247,139 @@
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
+
+@media (min-width: 901px) and (max-width: 1499px) {
+  .interactive-zone {
+    width: min(350px, 22vw);
+  }
+
+  .icon-wrapper {
+    width: clamp(110px, 8.5vw, 140px);
+    height: clamp(110px, 8.5vw, 140px);
+  }
+
+  .lily-flower {
+    width: clamp(130px, 10.5vw, 170px);
+    height: clamp(130px, 10.5vw, 170px);
+  }
+
+  .zone-title {
+    font-size: clamp(1.6rem, 1.7vw, 2rem);
+  }
+}
+
+@media (max-width: 900px) {
+  .enchanted-pond-container {
+    overflow-y: auto;
+    cursor: default;
+  }
+
+  .lantern-cursor {
+    display: none;
+  }
+
+  .flashlight-reveal-layer {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    -webkit-mask-image: none;
+    mask-image: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 5rem 1.25rem 2rem;
+  }
+
+  .interactive-zone,
+  .zone-left,
+  .zone-center,
+  .zone-right {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: min(100%, 340px);
+    transform: none;
+  }
+
+  .interactive-zone:hover,
+  .interactive-zone.active,
+  .zone-center:hover,
+  .zone-center.active {
+    transform: none;
+  }
+
+  .icon-wrapper {
+    width: clamp(76px, 18vw, 120px);
+    height: clamp(76px, 18vw, 120px);
+    margin-bottom: 0.5rem;
+  }
+
+  .lily-flower {
+    width: 130%;
+    height: 130%;
+    top: -8%;
+    right: -8%;
+  }
+
+  .zone-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .zone-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .interactive-zone.active .zone-text {
+    max-height: 150px;
+  }
+
+  .hint-text {
+    top: 4.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  .lantern-glow {
+    width: 340px;
+    height: 340px;
+  }
+}
+
+@media (max-width: 900px) and (max-height: 700px) {
+  .flashlight-reveal-layer {
+    gap: 0.4rem;
+    padding: 4.5rem 1.25rem 1rem;
+  }
+
+  .icon-wrapper {
+    width: 72px;
+    height: 72px;
+  }
+
+  .zone-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .zone-text {
+    font-size: 0.85rem;
+  }
+
+  .interactive-zone.active .zone-text {
+    max-height: 96px;
+  }
+
+  .hint-text {
+    top: 3.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+  }
+}

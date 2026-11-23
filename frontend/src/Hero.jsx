@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import './Hero.css';
 import Terminal from './Terminal';
 
 const TITLE = 'Made byalina.dev';
+const TITLE_WORDS = TITLE.split(' ');
 const SUBTITLE = 'L3 CS Student • Looking for CS Stage';
 const MARQUEE_ITEMS = ['Java', 'C', 'Python', 'React', 'SQL', 'Git', 'TypeScript', 'Vite', 'Figma'];
 
@@ -107,10 +108,17 @@ const visualRef = useRef(null);
         </div>
 
         <h1 className="hero-title" ref={titleRef}>
-          {TITLE.split('').map((ch, i) => (
-            <span key={i} className="char" onMouseEnter={popLetter} onMouseLeave={restLetter}>
-              {ch}
-            </span>
+          {TITLE_WORDS.map((word, wordIndex) => (
+            <Fragment key={wordIndex}>
+              <span className="hero-word">
+                {word.split('').map((ch, i) => (
+                  <span key={i} className="char" onMouseEnter={popLetter} onMouseLeave={restLetter}>
+                    {ch}
+                  </span>
+                ))}
+              </span>
+              {wordIndex < TITLE_WORDS.length - 1 ? ' ' : null}
+            </Fragment>
           ))}
         </h1>
 

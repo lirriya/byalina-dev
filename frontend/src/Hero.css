@@ -61,14 +61,7 @@
   transform: translateY(26px);
 }
 
-.status-dot {
-  display: inline-block;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #839958;
-  box-shadow: 0 0 10px rgba(131, 153, 88, 0.9);
-}
+
 
 .hero-title {
   font-size: clamp(3.2rem, 8vw, 6.6rem);

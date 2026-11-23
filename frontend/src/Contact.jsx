@@ -365,7 +365,7 @@ function Contact() {
           <span className="blink">˖</span> ⊹ ࣪ ˖  tap the water ⋆˚࿔ <span className="blink">˖</span>
         </span>
         <span className="hint-line hint-channel" ref={hintChannelRef} aria-hidden="true">
-          <span className="blink">˖</span> ⋆˚࿔ pick a channel ⊹ ࣪ ˖ ໒꒱ <span className="blink">˖</span>
+          <span className="blink">˖</span> ⋆˚࿔ you made it rain! ⊹ ࣪ ˖ ໒꒱ <span className="blink">˖</span>
         </span>
       </p>
 

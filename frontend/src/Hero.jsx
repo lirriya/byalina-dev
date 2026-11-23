@@ -5,8 +5,8 @@ import Terminal from './Terminal';
 
 const TITLE = 'Made byalina.dev';
 const TITLE_WORDS = TITLE.split(' ');
-const SUBTITLE = 'L3 CS Student • Looking for CS Stage';
-const MARQUEE_ITEMS = ['Java', 'C', 'Python', 'React', 'SQL', 'Git', 'TypeScript', 'Vite', 'Figma'];
+const SUBTITLE = 'L3 CS Student • Looking for Full-stack Web Stage';
+const MARQUEE_ITEMS = ['React', 'JavaScript', 'Vite', 'Node.js', 'Express', 'MongoDB', 'GSAP', 'SQL', 'Git'];
 
 function Hero({ scrollToSection }) {
   const heroRef = useRef(null);
@@ -103,7 +103,6 @@ const visualRef = useRef(null);
 
       <div className="hero-content">
         <div className="hero-status" ref={pillRef}>
-          <span className="status-dot" ref={dotRef}></span>
           open to stage
         </div>
 
@@ -132,12 +131,12 @@ const visualRef = useRef(null);
         </p>
 
         <p className="hero-intro" ref={introRef}>
-          Third-year CS student with a soft spot for Java, cozy games and autumn cinnamon rolls — currently hunting for a
-          Software Engineering stage.
+          Third-year CS student with a soft spot for web dev, cozy games and autumn cinnamon rolls — currently hunting for an 8-16 week
+          Full-stack Web Dev stage (starting from 19th of April).
         </p>
 
         <div className="hero-chips" ref={chipsRef}>
-          {['Java', 'C', 'Python', 'React', 'SQL', 'Git'].map((skill) => (
+          {['React', 'Angular', 'Vite', 'Node.js', 'SQL', 'Git', 'JavaScript', 'MongoDB', 'Express', 'H2', 'Java', 'Python', 'C++', 'C#', 'HTML5/CSS3'].map((skill) => (
             <span key={skill} className="chip">
               {skill}
             </span>

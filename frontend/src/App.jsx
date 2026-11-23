@@ -21,16 +21,24 @@ function App() {
     const container = containerRef.current;
     if (!container) return;
 
+    let target = 0;
+
     if (id === 'about' || id === 'projects') {
       const st = ScrollTrigger.getAll().find((t) => t.trigger === stageRef.current);
-      if (st) {
-        container.scrollTo({ top: id === 'projects' ? st.end : st.start, behavior: 'smooth' });
-        return;
+      if (st) target = id === 'projects' ? st.end : st.start;
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        target = element.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop;
       }
     }
 
-    const element = document.getElementById(id);
-    if (element) element.scrollIntoView({ behavior: 'smooth' });
+    gsap.to(container, {
+      scrollTop: target,
+      duration: 0.9,
+      ease: 'power2.inOut',
+      overwrite: true,
+    });
   };
 
   useEffect(() => {
@@ -75,7 +83,8 @@ function App() {
           start: 'top top',
           end: () => '+=' + dist(),
           pin: true,
-          scrub: 0.5,
+          pinType: 'fixed',
+          scrub: 0.35,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
@@ -89,63 +98,6 @@ function App() {
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
-
-  // Snap-to-section: after scrolling pauses, commit to the NEXT section in the
-  // scroll direction (hero / about = pin start / projects = pin end / contact).
-  // Direction-aware so it never yanks you back with a rubber-band effect.
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    let snapTimer = null;
-    let lastScrollTop = container.scrollTop;
-    let direction = 0;
-
-    const getSnapPositions = () => {
-      const st = ScrollTrigger.getAll().find((t) => t.trigger === stageRef.current);
-      if (!st) return null;
-      return [0, st.start, st.end, container.scrollHeight - container.clientHeight];
-    };
-
-    const applySnap = () => {
-      snapTimer = null;
-      const positions = getSnapPositions();
-      if (!positions) return;
-      const current = container.scrollTop;
-
-      const settled = positions.some((p) => Math.abs(p - current) < 4);
-      if (settled) return;
-
-      let target;
-      if (direction >= 0) {
-        target = positions.find((p) => p > current + 1) || positions[positions.length - 1];
-      } else {
-        const previous = positions.filter((p) => p < current - 1);
-        target = previous.length ? previous[previous.length - 1] : positions[0];
-      }
-
-      if (Math.abs(target - current) > 2) {
-        container.scrollTo({ top: target, behavior: 'smooth' });
-      }
-    };
-
-    const handleScroll = () => {
-      const current = container.scrollTop;
-      const delta = current - lastScrollTop;
-      if (delta > 0) direction = 1;
-      else if (delta < 0) direction = -1;
-      lastScrollTop = current;
-
-      if (snapTimer) clearTimeout(snapTimer);
-      snapTimer = setTimeout(applySnap, 150);
-    };
-
-    container.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      if (snapTimer) clearTimeout(snapTimer);
-      container.removeEventListener('scroll', handleScroll);
-    };
   }, []);
 
   return (

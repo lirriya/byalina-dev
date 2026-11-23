@@ -28,6 +28,8 @@ graph TD
 
 ## Documents
 
+- [App — scroll model and nav tweens](App.md)
+- [Index — HTML shell, metadata and favicon](Index.md)
 - [Hero](Hero.md)
 - [Terminal](Terminal.md)
 - [Navbar](Navbar.md)

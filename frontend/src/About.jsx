@@ -77,21 +77,21 @@ function About() {
         {
             id: 1,
             title: "My Studies",
-            text: "L3 CS Student diving deep into software engineering, algorithms, and system architecture.",
+            text: "Finishing my last year of Licence CS in University of Lorraine. Getting great knowledge on software engineering, algorithms, and system architecture.",
             Icon: PinkLotus,
             className: "zone-left"
         },
         {
             id: 2,
             title: "My Skills",
-            text: "React, JavaScript, Linux Ricing. Building highly interactive web experiences.",
+            text: "Personally, I think I have a great feeling on how to make UI/UX design feel natural, aethetic and intuitive. I have a competences in such field: React, Angular, JavaScript, C++, Java, working with databases",
             Icon: Frog,
             className: "zone-center"
         },
         {
             id: 3,
             title: "Who I Am",
-            text: "A creative developer who believes code should be as beautiful on the screen as it is under the hood.",
+            text: "I consider myself as someone who's hard working. I love learning, and I believe my super power is that I can make myself be interested in anything. My weakness is feeling lost when i'm not sure what the goal of something is.",
             Icon: PinkLotus,
             className: "zone-right"
         }

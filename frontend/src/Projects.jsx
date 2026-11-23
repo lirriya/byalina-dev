@@ -35,8 +35,30 @@ const projectList = [
         role: 'Full Stack',
         stack: ['Node.js', 'Express', 'MongoDB'],
         features: ['Tumblr-inspired feed', 'User accounts', 'Rich text publishing'],
-        link: 'https://github.com'
-    }
+        link: 'https://github.com/lirriya/MythiFox'
+    },
+    {
+        id: 4,
+        title: 'Tvorsvit',
+        tech: 'Full Stack',
+        desc: 'World-building app with integrated text editor.',
+        year: 2026,
+        role: 'Full Stack',
+        stack: ['React', 'REST API', 'H2'],
+        features: ['Text-editor', 'Multiple Project managing', 'Graph view of variables'],
+        link: 'https://github.com/lirriya/Tvorsvit'
+    },
+     {
+        id: 5,
+        title: 'Classes',
+        tech: 'TypeScript',
+        desc: 'A digital notebook that covers full material on some of my university classes',
+        year: 2026,
+        role: 'Design/Front-end',
+        stack: ['React', 'REST API', 'H2'],
+        features: ['Multiple classes', 'Interactive classes', 'Multiple language choice', 'Light/Dark Theme'],
+        link: 'https://github.com/lirriya/classes'
+     }
 ];
 
 function Projects() {
@@ -243,7 +265,6 @@ function Projects() {
    return (
         <section id="projects" className="projects-container" ref={sectionRef}>
             
-            {/* 🌟 CINEMATIC BACKGROUND TYPOGRAPHY */}
             <div className="bg-typography-wrapper">
                 <h1 className="bg-text bg-text-top" ref={textTopRef}>
                     <span className="bg-text-inner" ref={textTopSpanRef}>{isOpened ? projectList[activeCardIndex].title : 'MY OWN COLLECTION'}</span>
@@ -253,10 +274,8 @@ function Projects() {
                 </h1>
             </div>
 
-            {/* 💥 SECTION-WIDE BURST FLASH */}
             <div className="section-flash" ref={sectionFlashRef}></div>
 
-            {/* 🖥️ NEW: TERMINAL HUD SIDE ACCENTS TO FILL EMPTY SPACE */}
             <div className="terminal-hud hud-left">
                 <div className="hud-line"></div>
                 <span className="hud-text">SYS.INIT // V_1.0</span>
@@ -269,7 +288,6 @@ function Projects() {
                 <div className="hud-line"></div>
             </div>
 
-            {/* 📦 THE BOOSTER PACK */}
             <div className="booster-wrapper" ref={boosterRef} style={{ pointerEvents: isOpened ? 'none' : 'auto' }}>
                 <div className="booster-pack" style={{ '--tear-progress': `${tearAmount}%` }}>
                     
@@ -296,12 +314,10 @@ function Projects() {
                     </div>
                 </div>
 
-                {/* ✨ BURST FX: WHITE FLASH + STARBURST */}
                 <div className="booster-flash" ref={flashRef}></div>
                 <div className="booster-starburst" ref={starRef}></div>
             </div>
 
-            {/* 🃏 THE 3D CARD STACK */}
             <div className={`card-stack-wrapper ${isOpened ? 'revealed' : ''}`}>
                 {projectList.map((proj, index) => {
                     const positionOffset = (index - activeCardIndex + projectList.length) % projectList.length;
@@ -321,7 +337,6 @@ function Projects() {
                         >
                             <div className="card-header">
                                 <span className="terminal-mode">zsh // project_view</span>
-                                {/* FIX: Now uses 'index + 1' so it actually says 1/3, 2/3, 3/3! */}
                                 <span className="terminal-id">[{index + 1}/{projectList.length}]</span>
                             </div>
                             <h3 className="card-title"><span className="prompt">~/$</span> {proj.title}</h3>
